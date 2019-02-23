@@ -20,13 +20,16 @@ class player:
 		self.age = age
 
 def main():
+	#create arrays for players sorted into positions
 	shootingGuard = []
 	powerForward = []
 	center = []
 	pointGuard = []
 	
+	#get data from csv and sort players into arrays
 	getData('nba.csv', shootingGuard, powerForward, center, pointGuard)
 	
+	#shows some sample scatterplots using matplotlib and numpy. X-axis is age (weight). Y-axis is player efficiency (value)
 	makeGraph(shootingGuard, "Shooting Guard Statistics")
 	makeGraph(powerForward, "Power Forward Statistics")
 	makeGraph(center, "Center Statistics")
