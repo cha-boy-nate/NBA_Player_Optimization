@@ -1,10 +1,4 @@
 import csv
-import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib.ticker as ticker
-from sklearn import datasets, linear_model
-
-from matplotlib.ticker import NullFormatter
 
 #Class creates class data type with their playerID, name. value, and age
 class player:
@@ -21,15 +15,18 @@ class player:
 
 def main():
 	data = []
-	getData("sample-nba-salaries-per.csv", data)
+	print(getData("sample-nba-salaries-per.csv", data))
+	print()
 	sum = 0
-	for i in data:
+	#for i in data:
+	#	print(i.value)
 		
-		sum = i.value + sum
-	#maxWeight = 1000000
-	#n = len(data)
+	#print(test(1000000, ))
+		#sum = i.value + sum
+	maxWeight = 1000000
+	n = len(data)
 	#knapSack(maxWeight, getWeights(test), getValues(test), n)
-	#print(test(maxWeight, getWeights(data), getValues(data), n))
+	print(test(maxWeight, getWeights(data), getValues(data), n))
 	return 0
 
 
