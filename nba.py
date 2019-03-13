@@ -20,16 +20,38 @@ class player:
 		self.weight = weight
 
 def main():
-	test = []
-	getData("nba-sorted.csv", test)
-	W = 200
-	n = len(test)
-	knapSack(W, getWeights(test), getValues(test), n)
+	data = []
+	getData("sample-nba-salaries-per.csv", data)
+	sum = 0
+	for i in data:
+		
+		sum = i.value + sum
+	#maxWeight = 1000000
+	#n = len(data)
+	#knapSack(maxWeight, getWeights(test), getValues(test), n)
+	#print(test(maxWeight, getWeights(data), getValues(data), n))
 	return 0
 
+
+def test(W, wt, val, n):
+	# Base Case
+	if n == 0 or W == 0:
+		return 0
+
+	# If weight of the nth item is more than Knapsack of capacity
+	# W, then this item cannot be included in the optimal solution
+	if (wt[n - 1] > W):
+		return test(W, wt, val, n - 1)
+
+	# return the maximum of two cases:
+	# (1) nth item included
+	# (2) not included
+	else:
+		return max(val[n - 1] + test(W - wt[n - 1], wt, val, n - 1), test(W, wt, val, n - 1))
+
+
 def knapSack(maxWeight, weight, value, counter):
-	table = [[0 for runningWeight in range(maxWeight + 1)]
-		 for index in range(counter + 1)]
+	table = [[0 for runningWeight in range(maxWeight + 1)] for index in range(counter + 1)]
 	for index in range(counter + 1):
 		for runningWeight in range(maxWeight + 1):
 			if index == 0 or runningWeight == 0:
@@ -51,11 +73,14 @@ def knapSack(maxWeight, weight, value, counter):
 			final = final - value[index - 1]
 			runningWeight = runningWeight - weight[index - 1]
 
+
 def getData(fileLocation, dataset):
 	with open(fileLocation, newline='') as data:
 		reader = csv.reader(data)
+		i = 0
 		for row in reader:
-			dataset.append(player(row[0], row[1], float(row[4]), int(row[3])))
+			dataset.append(player(i, row[0], float(row[3]), int(row[2])))
+			i = i + 1
 
 def getWeights(players):
 	output = []
