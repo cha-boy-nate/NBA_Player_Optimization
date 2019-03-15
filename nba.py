@@ -5,7 +5,7 @@ class player:
 	name = ''
 	playerID = ''
 	value = 0
-	age = 0
+	weight = 0
 
 	def __init__(self, playerID, name, value, weight):
 		self.playerID = playerID
