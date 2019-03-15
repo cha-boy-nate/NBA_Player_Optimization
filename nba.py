@@ -15,61 +15,22 @@ class player:
 
 def main():
 	data = []
-	print(getData("sample-nba-salaries-per.csv", data))
-	print()
-	sum = 0
-	#for i in data:
-	#	print(i.value)
-		
-	#print(test(1000000, ))
-		#sum = i.value + sum
-	maxWeight = 1000000
+	getData("sample-nba-salaries-per.csv", data)
+	userSelection = input("Enter your the value from your selected players: ")
+	maxWeight = input("Enter your Max Value (Max Budget): ")
 	n = len(data)
-	#knapSack(maxWeight, getWeights(test), getValues(test), n)
-	print(test(maxWeight, getWeights(data), getValues(data), n))
+	optSelection = opt(int(maxWeight), data, n)
+	print("------------")
+	print("You can inprove your score by "  + str(optSelection - float(userSelection)) + " points for spending " + str(maxWeight))
+	print("From: " + str(userSelection))
+	print("To: " + str(optSelection))
+	print("------------")
 	return 0
 
-
-def test(W, wt, val, n):
-	# Base Case
-	if n == 0 or W == 0:
-		return 0
-
-	# If weight of the nth item is more than Knapsack of capacity
-	# W, then this item cannot be included in the optimal solution
-	if (wt[n - 1] > W):
-		return test(W, wt, val, n - 1)
-
-	# return the maximum of two cases:
-	# (1) nth item included
-	# (2) not included
-	else:
-		return max(val[n - 1] + test(W - wt[n - 1], wt, val, n - 1), test(W, wt, val, n - 1))
-
-
-def knapSack(maxWeight, weight, value, counter):
-	table = [[0 for runningWeight in range(maxWeight + 1)] for index in range(counter + 1)]
-	for index in range(counter + 1):
-		for runningWeight in range(maxWeight + 1):
-			if index == 0 or runningWeight == 0:
-				table[index][runningWeight] = 0
-			elif weight[index - 1] <= runningWeight:
-				table[index][runningWeight] = max(value[index - 1] + table[index - 1][runningWeight - weight[index - 1]], table[index - 1][runningWeight])
-			else:
-				table[index][runningWeight] = table[index - 1][runningWeight]
-	final = table[counter][maxWeight]
-	print("Max skill is " + str(final))
-	w = maxWeight
-	for index in range(counter, 0, -1):
-		if final <= 0:
-			return 0
-		if final == table[index - 1][runningWeight]:
-			continue
-		else:
-			print("weight - " + str(weight[index - 1]) + " value - " + str(value[index - 1]))
-			final = final - value[index - 1]
-			runningWeight = runningWeight - weight[index - 1]
-
+def opt(maxWeight, players, counter):
+	if counter == 0 or maxWeight == 0: return 0
+	if (players[counter -1].weight > maxWeight): return opt(maxWeight, players, counter - 1)
+	else: return max(players[counter -1].value + opt(maxWeight - players[counter -1].weight, players, counter - 1), opt(maxWeight, players, counter - 1))
 
 def getData(fileLocation, dataset):
 	with open(fileLocation, newline='') as data:
@@ -78,17 +39,5 @@ def getData(fileLocation, dataset):
 		for row in reader:
 			dataset.append(player(i, row[0], float(row[3]), int(row[2])))
 			i = i + 1
-
-def getWeights(players):
-	output = []
-	for i in players:
-		output.append(i.weight)
-	return output
-
-def getValues(players):
-	output = []
-	for i in players:
-		output.append(i.value)
-	return output
 
 main()
