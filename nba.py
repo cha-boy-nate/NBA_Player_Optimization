@@ -1,5 +1,5 @@
 import csv
-
+import time
 #Class creates class data type with their playerID, name. value, and age
 class player:
 	name = ''
@@ -19,11 +19,15 @@ def main():
 	userSelection = input("Enter your the value from your selected players: ")
 	maxWeight = input("Enter your Max Value (Max Budget): ")
 	n = len(data)
+	start = time.time()
 	optSelection = opt(int(maxWeight), data, n)
+	finish = time.time()
 	print("------------")
 	print("You can inprove your score by "  + str(optSelection - float(userSelection)) + " points for spending " + str(maxWeight))
 	print("From: " + str(userSelection))
 	print("To: " + str(optSelection))
+	print("Process took: " + str(finish - start))
+
 	print("------------")
 	return 0
 
