@@ -39,7 +39,7 @@
 
 <li>
 <h2>References</h2>
-<li>
+</li>
 
 <ol>
 
