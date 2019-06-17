@@ -53,7 +53,7 @@
 
 <li>
   Ford, E. (2016, August 31). Moneyball: How Big Data & Analytics Turned The Oakland A's Into The Best Team In Baseball. Retrieved March 15, 2019, from https://thesportsmarketingplaybook.com/2016/08/31/moneyball-how-big-data-analytics-turned-the-oakland-as-into-the-best-team-in-baseball/ 
-<li>
+</li>
 
 <li>
   Mital, N. (2018, September 05). Overlapping Subproblems Property in Dynamic Programming | DP-1. Retrieved March 15, 2019, from https://www.geeksforgeeks.org/overlapping-subproblems-property-in-dynamic-programming-dp-1/
